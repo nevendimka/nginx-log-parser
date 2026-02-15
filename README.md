@@ -30,5 +30,8 @@ docker build -t nginx-parser .
     /file/: input log file path
     --format: Choose between csv, json, or excel.
     --errors: Filter and save only 4xx and 5xx status codes.
-    
 ---
+
+## Use via Docker Hub
+#You don't even need to clone this repo. Just run:
+    docker run --rm -v $(pwd):/app nevendimka/nginx-log-parser /app/data/your_log.log
