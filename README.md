@@ -48,6 +48,7 @@ docker run --rm -v ${PWD}:/app nevendimka/nginx-log-parser:latest /app/data/your
 ```
 Note: The -v flag (volume) is essential to see the generated output/ folder on your host machine.
 
+---
 
 ### 🤖 This project was co-developed with Gemini, an advanced AI collaborator. 
 The collaboration focused on:
