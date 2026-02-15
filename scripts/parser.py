@@ -31,7 +31,7 @@ def run_git_commands(file_path):
     except Exception as e:
         print(f"❌ Помилка Git: {e}")
 
-def parse_logs(output_format='csv'):
+def parse_logs(output_format='csv', filter_errors=False):
     data = []
     if not os.path.exists(LOG_FILE):
         print(f"❌ Файл {LOG_FILE} не знайдено!")
@@ -45,6 +45,12 @@ def parse_logs(output_format='csv'):
 
     df = pd.DataFrame(data)
     
+    if filter_errors:
+        # Перетворюємо статус на числа для фільтрації
+        df['status'] = pd.to_numeric(df['status'])
+        df = df[df['status'] >= 400]
+        print(f"⚠️ Фільтр: залишено лише помилки (4xx/5xx). Рядків: {len(df)}")
+
     # --- БЛОК АНАЛІТИКИ ---
     print("\n📊 ТОП-5 IP адрес (Аналітика DDoS):")
     print(df['ip'].value_counts().head(5))
@@ -69,6 +75,10 @@ if __name__ == "__main__":
     # Додаємо аргументи командного рядка (Bonus points)
     parser = argparse.ArgumentParser(description="Nginx Log Parser & Analyzer")
     parser.add_argument('--format', choices=['csv', 'json', 'excel'], default='csv', help="Формат вихідного файлу")
+    parser.add_argument('--errors', action='store_true', help="Тільки помилки 4xx та 5xx")
     
     args = parser.parse_args()
-    parse_logs(output_format=args.format)
+    parse_logs(output_format=args.format, filter_errors=args.errors)
+    
+#    args = parser.parse_args()
+#    parse_logs(output_format=args.format)
