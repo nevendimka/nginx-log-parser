@@ -2,12 +2,6 @@
 
 A powerful CLI tool to parse Nginx access logs, generate structured reports (CSV/JSON/Excel), and track them via Git.
 
-🤖 Built with Gemini
-This project was co-developed with Gemini, an advanced AI collaborator. The collaboration focused on:
-    Architecting the Python-based log parsing logic.
-    Containerizing the application using Docker best practices.
-    Automating Git workflows within an isolated environment.
-
 ## ✨ Features
 - **Smart Parsing**: Extracts IP, Status, Method, and more using Regex.
 - **Analytics**: Built-in DDoS detection (Top-5 IP addresses).
@@ -20,9 +14,9 @@ This project was co-developed with Gemini, an advanced AI collaborator. The coll
 1. Build the image:
 ```bash
 docker build -t nginx-parser .
-
+```
 2. Run the app from your cli:
-
+```bash
 # Basic run (outputs CSV)
     docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log 
 
@@ -31,7 +25,7 @@ docker build -t nginx-parser .
 
 # - filter errors (4xx/5xx) only and export to JSON
     docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log --error --format json 
-
+```
 3. Bonus Options
     /file/: input log file path
     --format: Choose between csv, json, or excel.
@@ -46,8 +40,17 @@ The easiest way to run the tool without cloning the repo:
 ```bash
 # For Linux / macOS / WSL:
 docker run --rm -v $(pwd):/app nevendimka/nginx-log-parser:latest /app/data/your_log.log
+```
 
+```bash
 # For Windows (PowerShell):
 docker run --rm -v ${PWD}:/app nevendimka/nginx-log-parser:latest /app/data/your_log.log
+```
+Note: The -v flag (volume) is essential to see the generated output/ folder on your host machine.
 
-# Note: The -v flag (volume) is essential to see the generated output/ folder on your host machine.
+
+# 🤖 This project was co-developed with Gemini, an advanced AI collaborator. 
+The collaboration focused on:
+- **-**Architecting the Python-based log parsing logic.
+- **-**Containerizing the application using Docker best practices.
+- **-**Automating Git workflows within an isolated environment.
