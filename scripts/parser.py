@@ -65,7 +65,7 @@ def parse_logs(output_format='csv', filter_errors=False):
         df.to_json(output_file, orient='records', indent=4)
     elif output_format == 'excel':
         # Для excel потрібна бібліотека openpyxl (pip install openpyxl)
-        df.to_excel(output_file, index=False, engine=)
+        df.to_excel(output_file, index=False, engine='openpyxl')
     else:
         df.to_csv(output_file, index=False)
 
