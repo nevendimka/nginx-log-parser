@@ -74,6 +74,9 @@ def parse_logs(output_format='csv', filter_errors=False):
 if __name__ == "__main__":
     # Додаємо аргументи командного рядка (Bonus points)
     parser = argparse.ArgumentParser(description="Nginx Log Parser & Analyzer")
+    # Новий аргумент для шляху до файлу
+    parser.add_argument('--file', nargs='?', default='/app/data/access.log', 
+                        help="Шлях до файлу логів")
     parser.add_argument('--format', choices=['csv', 'json', 'excel'], default='csv', help="Формат вихідного файлу")
     parser.add_argument('--errors', action='store_true', help="Тільки помилки 4xx та 5xx")
     
