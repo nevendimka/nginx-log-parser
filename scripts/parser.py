@@ -58,13 +58,14 @@ def parse_logs(output_format='csv', filter_errors=False):
 
     # --- ЕКСПОРТ ---
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    output_file = f"{OUTPUT_DIR}/log_report.{output_format}"
+    file_ext = 'xlsx' if output_format == 'excel' else output_format
+    output_file = f"{OUTPUT_DIR}/log_report.{file_ext}"
     
     if output_format == 'json':
         df.to_json(output_file, orient='records', indent=4)
     elif output_format == 'excel':
         # Для excel потрібна бібліотека openpyxl (pip install openpyxl)
-        df.to_excel(output_file, index=False)
+        df.to_excel(output_file, index=False, engine=)
     else:
         df.to_csv(output_file, index=False)
 
@@ -75,7 +76,7 @@ if __name__ == "__main__":
     # Додаємо аргументи командного рядка (Bonus points)
     parser = argparse.ArgumentParser(description="Nginx Log Parser & Analyzer")
     # Новий аргумент для шляху до файлу
-    parser.add_argument('--file', nargs='?', default='/app/data/access.log', 
+    parser.add_argument('log_file', nargs='?', default='/app/data/access.log', 
                         help="Шлях до файлу логів")
     parser.add_argument('--format', choices=['csv', 'json', 'excel'], default='csv', help="Формат вихідного файлу")
     parser.add_argument('--errors', action='store_true', help="Тільки помилки 4xx та 5xx")
