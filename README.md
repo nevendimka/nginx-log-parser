@@ -1,4 +1,4 @@
-# Nginx Log Parser & Analyzer
+# Nginx Log Parser & Analyzer CLI
 
 Simple DevOps tool to parse Nginx access logs, convert them to structured formats (CSV/JSON/Excel), and automatically store results in Git.
 
@@ -9,13 +9,27 @@ Simple DevOps tool to parse Nginx access logs, convert them to structured format
 - **Git Integration**: Automated `git add` and `git commit` for every report.
 - **Dockerized**: Pre-configured environment with Python, Pandas, and Git.
 
-## Quick Start (Docker)
+## 🚀 How to Run
 
 1. **Build the image**:
-   
-   docker build -t nginx-parser .
+```bash
+docker build -t nginx-parser .
 
-2. Run the container:
+Now you have 2 options: run app from you cli or run the container and work inside
+
+2.1 Run the app from your cli:
+
+# - generate standart CSV file
+    docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log 
+
+# - generate Excel file
+    docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log --format exce 
+
+# - filter only errors (4xx/5xx) and export to JSON
+    docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log --error --format json 
+
+
+2.2 Run the container:
 
     docker run -it --name parser-dev -v $(pwd):/app nginx-parser bash
 
@@ -28,7 +42,7 @@ Simple DevOps tool to parse Nginx access logs, convert them to structured format
     /app/scripts/parser.py --format json --errors
 
 4. Bonus Options
-    --file: input data file path
+    /file/: input data file path
     --format: Choose between csv, json, or excel.
     --errors: Filter and save only 4xx and 5xx status codes.
     
