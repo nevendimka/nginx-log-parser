@@ -23,7 +23,7 @@ Now you have 2 options: run app from you cli or run the container and work insid
     docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log 
 
 # - generate Excel file
-    docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log --format exce 
+    docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log --format excel 
 
 # - filter only errors (4xx/5xx) and export to JSON
     docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log --error --format json 
