@@ -48,10 +48,16 @@ docker run --rm -v ${PWD}:/app nevendimka/nginx-log-parser:latest /app/data/your
 ```
 Note: The -v flag (volume) is essential to see the generated output/ folder on your host machine.
 
+(!!!)If you want to use the tool without cloning the repo, **do not mount the entire `/app` folder**, as it will overwrite the internal script. Use this command instead:
+
+```bash
+# Mount your logs folder to /data in container
+docker run --rm -v $(pwd):/data nevendimka/nginx-log-parser:latest /data/path_to_your_log.log
+```
 ---
 
-### 🤖 This project was co-developed with Gemini, an advanced AI collaborator. 
-The collaboration focused on:
-- Architecting the Python-based log parsing logic.
-- Containerizing the application using Docker best practices.
-- Automating Git workflows within an isolated environment.
+### 🤖 This project was developed with the assistance of Gemini AI. 
+Key contributions included:
+- Refinement of Python parsing logic and Regex patterns.
+- Debugging Docker volume mounting issues across different environments (Kali, WSL, Codespaces).
+- Structuring automated Git workflows within containers.
