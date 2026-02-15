@@ -1,11 +1,23 @@
 FROM python:3.11-slim
 
-#Install git
-RUN apt-get update && apt-get install -y git && apt-get install -y vim && rm -rf /var/lib/apt/lists/*
+#Install required tools (git, vim, dos2unix)
+RUN apt-get update && apt-get install -y \ 
+    git \
+    vim \
+    dos2unix \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-#If there will be some dependencies there we add them here
-RUN pip install pandas && pip install openpyxl
+#Python libs installation
+RUN pip install pandas openpyxl
 
-CMD ["bash"]
+#Copy project 
+COPY . .
+
+#Fix the end of the string \n (just to avoid errors between Windows and unix)
+RUN dos2unix scripts/parser.py && chmod +x scripts/parser.py
+
+ENTRYPOINT [ "/app/scripts/parser.py" ]
+
+#CMD ["bash"]
