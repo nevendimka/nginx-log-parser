@@ -34,7 +34,7 @@ docker build -t nginx-parser .
 ---
 
 ## 🛠️ Usage (Standard - via Docker Hub)
-You don't need to clone the repository to use this tool. Just run:
+You don't need to clone the repository to use this tool.
 The easiest way to run the tool without cloning the repo:
 
 ```bash
