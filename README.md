@@ -26,10 +26,10 @@ docker build -t nginx-parser .
 # - filter errors (4xx/5xx) only and export to JSON
     docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log --error --format json 
 ```
-3. Bonus Options
-    /file/: input log file path
-    --format: Choose between csv, json, or excel.
-    --errors: Filter and save only 4xx and 5xx status codes.
+3. Options:
+- /file/: input log file path
+- --format: Choose between csv, json, or excel.
+- --errors: Filter and save only 4xx and 5xx status codes.
 
 ---
 
@@ -51,6 +51,6 @@ Note: The -v flag (volume) is essential to see the generated output/ folder on y
 
 # 🤖 This project was co-developed with Gemini, an advanced AI collaborator. 
 The collaboration focused on:
-- **-**Architecting the Python-based log parsing logic.
-- **-**Containerizing the application using Docker best practices.
-- **-**Automating Git workflows within an isolated environment.
+- Architecting the Python-based log parsing logic.
+- Containerizing the application using Docker best practices.
+- Automating Git workflows within an isolated environment.
