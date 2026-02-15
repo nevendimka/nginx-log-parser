@@ -27,7 +27,7 @@ docker build -t nginx-parser .
     docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log --error --format json 
 
 3. Bonus Options
-    /file/: input data file path
+    /file/: input log file path
     --format: Choose between csv, json, or excel.
     --errors: Filter and save only 4xx and 5xx status codes.
     
