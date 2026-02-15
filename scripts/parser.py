@@ -6,7 +6,6 @@ import subprocess
 import argparse
 
 # Шляхи до файлів (всередині контейнера)
-#LOG_FILE = '/app/data/access.log'
 OUTPUT_DIR = '/app/output'
 GIT_REPO_PATH = '/app'
 
@@ -31,13 +30,13 @@ def run_git_commands(file_path):
     except Exception as e:
         print(f"❌ Помилка Git: {e}")
 
-def parse_logs(log_path, output_format='csv', filter_errors=False):
+def parse_logs(log_file_path, output_format='csv', filter_errors=False):
     data = []
-    if not os.path.exists(log_path):
-        print(f"❌ Файл {log_path} не знайдено!")
+    if not os.path.exists(log_file_path):
+        print(f"❌ Файл {log_file_path} не знайдено!")
         return
 
-    with open(log_path, 'r') as f:
+    with open(log_file_path, 'r') as f:
         for line in f:
             match = re.match(LOG_PATTERN, line)
             if match:
@@ -82,7 +81,7 @@ if __name__ == "__main__":
     parser.add_argument('--errors', action='store_true', help="Тільки помилки 4xx та 5xx")
     
     args = parser.parse_args()
-    parse_logs(log_path=args.log_file, output_format=args.format, filter_errors=args.errors)
+    parse_logs(log_file_path=args.log_file, output_format=args.format, filter_errors=args.errors)
     
 #    args = parser.parse_args()
 #    parse_logs(output_format=args.format)
