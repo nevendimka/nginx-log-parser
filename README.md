@@ -1,13 +1,19 @@
-# Nginx Log Parser & Analyzer CLI
+# Nginx Log Parser & Analyzer 🚀
 
-Simple DevOps tool to parse Nginx access logs, convert them to structured formats (CSV/JSON/Excel), and automatically store results in Git.
+A powerful CLI tool to parse Nginx access logs, generate structured reports (CSV/JSON/Excel), and track them via Git.
 
-## Features
-- **Log Parsing**: Extracts IP, Date, Method, URL, Status, and Size.
-- **Analytics**: Displays TOP-5 most active IP addresses (DDoS detection).
-- **Filtering**: Optional filtering for error status codes (4xx/5xx).
-- **Git Integration**: Automated `git add` and `git commit` for every report.
-- **Dockerized**: Pre-configured environment with Python, Pandas, and Git.
+🤖 Built with Gemini
+This project was co-developed with Gemini, an advanced AI collaborator. The collaboration focused on:
+    Architecting the Python-based log parsing logic.
+    Containerizing the application using Docker best practices.
+    Automating Git workflows within an isolated environment.
+
+## ✨ Features
+- **Smart Parsing**: Extracts IP, Status, Method, and more using Regex.
+- **Analytics**: Built-in DDoS detection (Top-5 IP addresses).
+- **Filtering**: Quickly isolate 4xx/5xx error codes with `--errors`.
+- **Git Automation**: Automatically commits every report to the repository.
+- **Portable**: Fully dockerized and ready for CI/CD.
 
 ## 🚀 How to Run
 
@@ -17,7 +23,7 @@ docker build -t nginx-parser .
 
 2. Run the app from your cli:
 
-# # Basic run (outputs CSV)
+# Basic run (outputs CSV)
     docker run --rm -v $(pwd):/app nginx-parser /app/data/nginx.log 
 
 # - generate Excel file
@@ -30,8 +36,18 @@ docker build -t nginx-parser .
     /file/: input log file path
     --format: Choose between csv, json, or excel.
     --errors: Filter and save only 4xx and 5xx status codes.
+
 ---
 
-## Use via Docker Hub
-#You don't even need to clone this repo. Just run:
-    docker run --rm -v $(pwd):/app nevendimka/nginx-log-parser /app/data/your_log.log
+## 🛠️ Usage (Standard - via Docker Hub)
+You don't need to clone the repository to use this tool. Just run:
+The easiest way to run the tool without cloning the repo:
+
+```bash
+# For Linux / macOS / WSL:
+docker run --rm -v $(pwd):/app nevendimka/nginx-log-parser:latest /app/data/your_log.log
+
+# For Windows (PowerShell):
+docker run --rm -v ${PWD}:/app nevendimka/nginx-log-parser:latest /app/data/your_log.log
+
+# Note: The -v flag (volume) is essential to see the generated output/ folder on your host machine.
